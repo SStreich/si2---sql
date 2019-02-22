@@ -8,7 +8,7 @@ RETURNS INTEGER AS $nth_fib$
     IF n = 0 THEN RETURN 0;
     ELSIF n = 1 THEN RETURN 1;
     ELSE
-     FOR i in 1..n LOOP
+     FOR i in 1..n-1 LOOP
         m := x + y;
         x := y;
         y := m;
@@ -22,6 +22,11 @@ DO $fib$
   BEGIN
    IF nth_fib(4) >= 0 THEN
      raise info 'Fibonacci nth number: %', nth_fib(40);
+     raise info 'Fibonacci nth number: %', nth_fib(0);
+     raise info 'Fibonacci nth number: %', nth_fib(1);
+     raise info 'Fibonacci nth number: %', nth_fib(12);
+     raise info 'Fibonacci nth number: %', nth_fib(37);
+
    end if;
   END;
   $fib$ LANGUAGE  plpgsql;
